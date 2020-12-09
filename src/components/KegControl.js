@@ -2,6 +2,8 @@ import React from 'react';
 import NewKegForm from "./NewKegForm";
 import KegList from "./KegList";
 import KegDetail from "./KegDetail";
+import * as a from '../actions';
+import * as c from '../actions/ActionTypes';
 
 class KegControl extends React.Component {
   constructor(props) {
@@ -16,22 +18,23 @@ class KegControl extends React.Component {
 }
 
 handleAddingNewKegToList = (newKeg) => {
-  const newMasterKegList = this.state.masterKegList.concat(newKeg);
-  this.setState({masterKegList: newMasterKegList,
-                formVisibleOnPage: false });
+  const { dispatch } = this.props;
+    const action = a.addKeg(newKeg);
+    dispatch(action);
+    const action2 = a.toggleForm();
+    dispatch(action2);
   }
 
 
 handleClick = () => {
   if (this.state.selectedKeg != null) {
     this.setState({
-      formVisibleOnPage: false,
       selectedKeg: null
     });
   } else {
-    this.setState(prevState => ({
-      formVisibleOnPage: !prevState.formVisibleOnPage,
-    }));
+    const { dispatch } = this.props;
+    const action = a.toggleForm();
+    dispatch(action);
   }
 }
 
@@ -43,33 +46,27 @@ handleChangingSelectedKeg= (id) => {
 }
 
 handlePouringKeg = (id) => {
-  console.log(id);
-  const newMasterKegList = this.state.masterKegList;
-  newMasterKegList.map((keg) => {
-    if (keg.id === id && keg.pintsAvail > 0) {
-      keg.pintsAvail -= 1;
-      //console.log(keg.id);
-    } else if (keg.id === id && keg.pintsAvail === 0 ) {
-      keg.pintsAvail = 'empty';
+  const { dispatch } = this.props;
+    const action = {
+      type: c.POUR,
+      id: id
     }
-    return keg; 
-  });
-  this.setState({masterKegList: newMasterKegList}); 
-};
+    dispatch(action);
+  }
 
-handleReStockKeg = (id) => {
-  const newMasterKegList = this.state.masterKegList;
-  newMasterKegList.map((keg) => {
-    if (keg.id === id && keg.pintsAvail !== 'empty') {
-      keg.pintsAvail += 1; 
-    } else if (keg.id === id && keg.pintsAvail === 'empty') 
-    {
-      keg.pintsAvail = 1;
-    } 
-    return keg;
-  });
-  this.setState({masterKegList: newMasterKegList});
-};
+// handleReStockKeg = (id) => {
+//   const newMasterKegList = this.state.masterKegList;
+//   newMasterKegList.map((keg) => {
+//     if (keg.id === id && keg.pintsAvail !== 'empty') {
+//       keg.pintsAvail += 1; 
+//     } else if (keg.id === id && keg.pintsAvail === 'empty') 
+//     {
+//       keg.pintsAvail = 1;
+//     } 
+//     return keg;
+//   });
+//   this.setState({masterKegList: newMasterKegList});
+// };
 
 render(){
   
@@ -105,9 +102,18 @@ render(){
       <button onClick={this.handleClick}>{buttonText}</button>
       </div>
     </React.Fragment>
-  );
+    );
+  }
 }
+
+const mapStateToProps = state => {
+  return {
+    masterKegList: state.masterFlavorList,
+    formVisibleOnPage: state.formVisibleOnPage
+  }
 }
+
+KegControl = conect(mapStateToProps)(KegControl);
 
 
 
