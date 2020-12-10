@@ -4,6 +4,7 @@ import KegList from "./KegList";
 import KegDetail from "./KegDetail";
 import * as a from '../actions';
 import * as c from '../actions/ActionTypes';
+import { connect } from 'react-redux';
 
 class KegControl extends React.Component {
   constructor(props) {
@@ -113,7 +114,7 @@ const mapStateToProps = state => {
   }
 }
 
-KegControl = conect(mapStateToProps)(KegControl);
+KegControl = connect(mapStateToProps)(KegControl);
 
 
 
