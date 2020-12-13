@@ -19,7 +19,7 @@ function Keg (props) {
       
       
         
-        <h5>Remaining Pints: {props.quantity}</h5>
+        <h5>Remaining Pints: {props.pintsAvail}</h5>
       
         
       <Button onClick={() => props.whenPourClicked(props.id)}>Pour!</Button>
