@@ -30,7 +30,8 @@ handleAddingNewKegToList = (newKeg) => {
 handleClick = () => {
   if (this.state.selectedKeg != null) {
     this.setState({
-      selectedKeg: null
+      selectedKeg: null,
+      editing: false
     });
   } else {
     const { dispatch } = this.props;
