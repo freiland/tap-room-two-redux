@@ -9,7 +9,7 @@ let store = createStore(rootReducer);
 describe("rootReducer", () => {
 
   test('Check that initial state of kegListReducer matches root reducer', () => {
-    expect(store.getState().masterFlavorList).toEqual(kegListReducer(undefined, { type: null }));
+    expect(store.getState().masterKegList).toEqual(kegListReducer(undefined, { type: null }));
   });
 
   test('Check that ADD_KEG action works for kegListReducer and root reducer', () => {

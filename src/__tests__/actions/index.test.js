@@ -9,7 +9,7 @@ describe('keg actions', () => {
   });
 
   it('addKeg should create ADD_KEG action', () => {
-    expect(actions.addFlavor({name: "Red House Lager", brand: "Mississippi Ale", price: 2, pintsAvail: 124, alcoholContent: 4, id:1})).toEqual({
+    expect(actions.addKeg({name: "Red House Lager", brand: "Mississippi Ale", price: 2, pintsAvail: 124, alcoholContent: 4, id:1})).toEqual({
             type: c.ADD_FLAVOR,
             name: "Red House Lager", 
             brand: "Mississippi Ale", 
