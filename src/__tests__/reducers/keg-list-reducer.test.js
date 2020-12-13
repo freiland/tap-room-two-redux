@@ -1,4 +1,4 @@
-import kegListReducer from '../../reducers/kegListReducer';
+import kegListReducer from '../../reducers/keg-list-reducer';
 import * as c from '../../actions/ActionTypes';
 
 describe('kegListReducer', () => {
@@ -19,7 +19,14 @@ describe('kegListReducer', () => {
     price: 2,
     alcoholContent: 5,
     pintsAvail: 124,
-    id: 1}
+    id: 1}, 
+    2: {
+      name: 'test2',
+      brand: 'test keg2',
+      price: 3,
+      alcoholContent: 3,
+      pintsAvail: 13,
+      id: 2}
   }
 
   test('Should return default state if there is no action type passed into the reducer', () => {
