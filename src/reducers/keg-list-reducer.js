@@ -1,9 +1,9 @@
-import * as c from './../actions/ActionTypes';
+import * as a from './../actions/ActionTypes';
 
 export default (state = {}, action) => {
   const { name, brand, price, alcoholContent, pintsAvail, id } = action;
   switch (action.type) {
-  case c.ADD_KEG:
+  case a.ADD_KEG:
     return Object.assign({}, state, {
       [id]: {
         name: name,
@@ -14,7 +14,7 @@ export default (state = {}, action) => {
         id: id
       }
     });
-  case c.POUR :
+  case a.POUR :
     const newState = {...state}
       if(newState[id].pintsAvail > 0) {
         newState[id].pintsAvail -= 1;
