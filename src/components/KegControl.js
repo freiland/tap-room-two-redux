@@ -47,10 +47,13 @@ handleChangingSelectedKeg= (id) => {
   this.setState({selectedKeg: selectedKeg});
 }
 
-handlePouringKeg = (kegToPour) => {
+handlePouringKeg = (id) => {
   const { dispatch } = this.props;
-  const action = a.addKeg(kegToPour);
-  dispatch(action);
+    const action = {
+      type: c.POUR,
+      id: id
+    }
+    dispatch(action);
   }
 
 // handleReStockKeg = (id) => {
@@ -89,7 +92,7 @@ render(){
   
   else {
     
-    currentlyVisibleState = <KegList kegList={this.state.masterKegList} onKegSelection={this.handleChangingSelectedKeg} onPourKeg={this.handlePouringKeg} onReStockKeg={this.handleReStockKeg} />;
+    currentlyVisibleState = <KegList kegList={this.state.masterKegList} onKegSelection={this.handleChangingSelectedKeg} onPourKeg={this.handlePouringKeg} onReStockKeg={this.handleReStockingKeg} />;
     
     // currentVisibleState = <ItemList onBuyItem={this.state.handleBuyingItem} />;
     buttonText = "Add New Keg"
