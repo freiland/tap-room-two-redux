@@ -47,13 +47,10 @@ handleChangingSelectedKeg= (id) => {
   this.setState({selectedKeg: selectedKeg});
 }
 
-handlePouringKeg = (id) => {
+handlePouringKeg = (kegToPour) => {
   const { dispatch } = this.props;
-    const action = {
-      type: c.POUR,
-      id: id
-    }
-    dispatch(action);
+  const action = a.addKeg(kegToPour);
+  dispatch(action);
   }
 
 // handleReStockKeg = (id) => {
